@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orizon Design - Rentals</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="min-h-screen text-white relative">
+
+    <!-- Background Image (Fixed for Hero) -->
+    <div class="fixed inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop"
+            alt="Mountain Landscape" class="w-full h-full object-cover scale-105" id="bg-image">
+        <div class="absolute inset-0 bg-overlay"></div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <div class="relative z-10 w-full min-h-screen flex flex-col" id="hero-section">
+
+        <!-- Top Navbar -->
+        <nav class="relative z-50 flex justify-between items-center p-4 md:p-8 w-full opacity-0" id="navbar">
+            <div class="flex bg-white/20 backdrop-blur-md rounded-full p-1 shadow-lg border border-white/30">
+                <button id="buyBtn"
+                    class="px-4 md:px-6 py-1.5 md:py-2 rounded-full bg-white text-gray-900 font-semibold text-xs md:text-sm shadow-sm transition-all duration-300">Buy</button>
+                <button id="rentBtn"
+                    class="px-4 md:px-6 py-1.5 md:py-2 rounded-full text-white font-medium text-xs md:text-sm hover:bg-white/10 transition-all duration-300">Rent</button>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-6 glass-panel rounded-full px-8 py-3 text-sm">
+                <div class="flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-location-dot text-white/70"></i>
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-white/60 uppercase tracking-wider font-semibold">Location</span>
+                        <div class="flex items-center gap-1 text-white font-medium">
+                            Arizona <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-px h-8 bg-white/20"></div>
+                <div class="flex items-center gap-2 cursor-pointer">
+                    <i class="fa-regular fa-building text-white/70"></i>
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-white/60 uppercase tracking-wider font-semibold">Property
+                            Type</span>
+                        <div class="flex items-center gap-1 text-white font-medium">
+                            Villa <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-px h-8 bg-white/20"></div>
+                <div class="flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-tag text-white/70"></i>
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-white/60 uppercase tracking-wider font-semibold">Max Price</span>
+                        <div class="flex items-center gap-1 text-white font-medium">
+                            $300 000 <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-white/20 backdrop-blur-md rounded-full p-1 shadow-lg border border-white/30 flex items-center">
+                <button
+                    class="px-4 md:px-6 py-1.5 md:py-2 rounded-full text-white font-medium text-xs md:text-sm hover:bg-white/10 transition-all duration-300 flex items-center gap-2">
+                    Rent <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Left Sidebar (Hidden on mobile) -->
+        <div class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-3 opacity-0"
+            id="sidebar">
+            <div class="glass-panel rounded-full p-2 flex flex-col gap-2 shadow-xl">
+                <button
+                    class="w-10 h-10 rounded-full bg-white text-gray-900 flex items-center justify-center shadow-md transition hover:scale-110">
+                    <i class="fa-solid fa-house text-sm"></i>
+                </button>
+                <button
+                    class="w-10 h-10 rounded-full text-white hover:bg-white/20 flex items-center justify-center transition">
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                </button>
+                <button
+                    class="w-10 h-10 rounded-full text-white hover:bg-white/20 flex items-center justify-center transition">
+                    <i class="fa-solid fa-border-all text-sm"></i>
+                </button>
+                <button
+                    class="w-10 h-10 rounded-full text-white hover:bg-white/20 flex items-center justify-center transition">
+                    <i class="fa-regular fa-comment-dots text-sm"></i>
+                </button>
+            </div>
+
+            <div class="glass-panel rounded-full p-1 shadow-xl cursor-pointer hover:scale-110 transition">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop"
+                    alt="Profile" class="w-10 h-10 rounded-full object-cover">
+            </div>
+
+            <div class="glass-panel rounded-full p-2 shadow-xl">
+                <button
+                    class="w-10 h-10 rounded-full text-white hover:bg-white/20 flex items-center justify-center transition">
+                    <i class="fa-regular fa-bell text-sm"></i>
+                </button>
+            </div>
+
+            <div class="glass-panel rounded-full p-2 flex flex-col gap-2 shadow-xl mt-2">
+                <button
+                    class="w-10 h-10 rounded-full text-white hover:bg-white/20 flex items-center justify-center transition">
+                    <i class="fa-solid fa-gear text-sm"></i>
+                </button>
+                <button
+                    class="w-10 h-10 rounded-full text-white hover:bg-white/20 flex items-center justify-center transition">
+                    <i class="fa-solid fa-moon text-sm"></i>
+                </button>
+                <button
+                    class="w-10 h-10 rounded-full bg-white text-gray-900 flex items-center justify-center shadow-md transition hover:scale-110 mt-1">
+                    <i class="fa-regular fa-sun text-sm"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Hero Text -->
+        <div class="relative z-30 flex-1 flex flex-col justify-center px-6 md:px-20 lg:px-32 mt-[-5vh]">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight tracking-tight mb-6 text-shadow-hero"
+                id="hero-title">
+                New Way Of <br> Living
+            </h1>
+
+            <p class="text-white/90 text-sm md:text-base max-w-md font-light leading-relaxed text-shadow-sm"
+                id="hero-subtitle">
+                Discover extraordinary properties available for purchase or rent. Whether you're seeking a dream home or
+                a unique investment, our curated listings offer the most exceptional options worldwide.
+            </p>
+        </div>
+
+        <!-- Floating Card 2: Right Side -->
+        <div class="absolute bottom-6 md:bottom-32 right-4 md:right-12 z-40 glass-panel rounded-[30px] p-5 md:p-6 w-[280px] md:w-[360px] shadow-2xl hidden sm:block opacity-0"
+            id="card-right">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="text-white font-bold text-lg text-shadow-sm">Lunar Oasis Villa</h3>
+                <button
+                    class="w-8 h-8 rounded-full bg-white text-gray-900 flex items-center justify-center shadow-md hover:scale-110 transition">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </button>
+            </div>
+
+            <div class="flex items-center gap-1 text-white/70 text-xs mb-3">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>1874 Forest Haven Rd, Asheville</span>
+            </div>
+
+            <p class="text-white/80 text-[11px] leading-relaxed mb-4">
+                This futuristic villa seamlessly blends into the desert environment, offering a modern, flowing space
+                with panoramic desert views. Its innovative design makes it a perfect luxury getaway.
+            </p>
+
+            <div class="flex items-center gap-4 text-white/80 text-[11px] font-medium mb-6">
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-vector-square"></i> 695m²
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-maximize"></i> 126m yard
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-bed"></i> 3 bedrooms
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-bath"></i> 2 baths
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-t border-white/20 pt-4">
+                <div class="flex flex-col items-center text-white/80 hover:text-red-400 transition cursor-pointer">
+                    <i class="fa-regular fa-heart text-lg"></i>
+                    <span class="text-[10px] mt-1">4.4K</span>
+                </div>
+                <div class="flex flex-col items-center text-white/80 hover:text-white transition cursor-pointer">
+                    <i class="fa-regular fa-bookmark text-lg"></i>
+                    <span class="text-[10px] mt-1">157</span>
+                </div>
+                <div class="flex flex-col items-center text-white/80 hover:text-white transition cursor-pointer">
+                    <i class="fa-solid fa-share-nodes text-lg"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RENTAL SECTION (Second Section) -->
+    <section id="rental-section"
+        class="relative z-20 w-full min-h-screen bg-[#f2f2f2] text-[#111111] flex flex-col justify-center p-6 md:p-12 overflow-hidden">
+
+        <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 relative items-center mt-8 md:mt-12">
+            <div class="flex flex-col justify-center max-w-xl z-10" id="rental-text-container">
+                <div class="text-line text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+                    Discover Premium
+                </div>
+                <div
+                    class="text-line text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mt-1 md:mt-2">
+                    Rentals & Homes
+                </div>
+                <div
+                    class="text-line text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mt-1 md:mt-2">
+                    Live In Elegance
+                </div>
+
+                <div class="w-full border-t-2 border-dashed border-gray-300 my-6 md:my-8 relative">
+                    <div
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#f2f2f2] px-4 text-gray-400 text-xs">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div class="w-3 h-3 rounded-full bg-[#a3e635] mt-1 shrink-0"></div>
+                    <p
+                        class="text-[10px] md:text-xs font-semibold text-gray-500 uppercase tracking-widest leading-relaxed">
+                        Explore our curated selection of rental properties. Whether you're looking for a cozy apartment
+                        or a luxury villa, we connect you with the perfect place to call home.
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative w-full h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center"
+                id="rental-image-container">
+                <div id="main-rental-image" class="w-full h-full relative overflow-hidden rounded-[30px] shadow-2xl">
+                    <img src="assets/home1.jpg" alt="Rental Property" class="w-full h-full object-cover">
+                </div>
+
+                <div class="absolute top-[15%] right-[5%] glass-badge z-30" id="badge-1">
+                    <i class="fa-solid fa-location-dot text-xs"></i>
+                    <span class="text-[10px] font-bold">Prime Location</span>
+                </div>
+
+                <div class="absolute bottom-[25%] right-[5%] glass-badge z-30" id="badge-2">
+                    <i class="fa-solid fa-circle-check text-xs"></i>
+                    <span class="text-[10px] font-bold">Verified Listing</span>
+                </div>
+
+                <div class="absolute -left-8 md:left-4 top-1/2 -translate-y-1/2 -rotate-90 origin-center text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase"
+                    id="rental-label">
+                    For Rent
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-6 left-12 flex gap-2 hidden md:flex">
+            <div class="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+        </div>
+        <div class="absolute bottom-6 right-12 flex gap-2 hidden md:flex">
+            <div class="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+        </div>
+    </section>
+
+    <!-- SECTION 3 - CINEMATIC ZEN -->
+    <section id="section-3" class="relative w-full h-screen min-h-[700px] overflow-hidden bg-[#2a3033]">
+
+        <div class="absolute inset-0 z-0 bg-3-image" id="sec3-bg"></div>
+        <div class="absolute inset-0 z-10 bg-3-fog" id="sec3-fog"></div>
+        <div class="absolute inset-0 z-20 bg-3-sun" id="sec3-sun"></div>
+        <div class="absolute inset-0 z-30 bg-3-vignette"></div>
+        <div class="absolute inset-0 z-30 bg-3-grain"></div>
+
+        <div class="relative z-40 w-full h-full flex flex-col justify-between p-6 md:p-12">
+
+            <div class="flex-1 flex flex-col md:flex-row items-center justify-between gap-12 mt-12 md:mt-0">
+
+                <div class="sec3-left-text order-2 md:order-1 opacity-0" id="sec3-left-text">
+                    <p class="sec3-left-label">The Awakening</p>
+                    <p class="sec3-left-desc">
+                        In the quiet dawn, where the water mirrors the sky, we find the stillness that the world
+                        forgets. A journey through the mist, guided by the silent tides of time.
+                    </p>
+                </div>
+
+                <div class="text-right order-1 md:order-2">
+                    <h2 class="sec3-title leading-[1.05]" id="sec3-title-line-1">SILENT</h2>
+                    <h2 class="sec3-title leading-[1.05]" id="sec3-title-line-2">TIDES</h2>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-end gap-8">
+
+                <div class="sec3-metadata flex flex-col gap-4 text-left opacity-0" id="sec3-meta-left">
+                    <div>
+                        <p class="sec3-label">COORDINATES</p>
+                        <p>34.8397° N<br>135.6933° E</p>
+                    </div>
+                    <div>
+                        <p class="sec3-label">ELEVATION</p>
+                        <p>52 M</p>
+                    </div>
+                    <div>
+                        <p class="sec3-label">TIME</p>
+                        <p>05:17 AM</p>
+                    </div>
+                </div>
+
+                <div class="sec3-vertical-text absolute left-6 md:left-12 top-1/2 -translate-y-1/2 opacity-0"
+                    id="sec3-jp-text">
+                    静かな海の声
+                </div>
+
+                <div class="opacity-0" id="sec3-cta">
+                    <button class="glass-btn group">
+                        <span>ENTER THE CURRENT</span>
+                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0"
+                id="sec3-scroll">
+                <span class="sec3-scroll-text">SCROLL TO DISCOVER</span>
+                <div class="w-px h-8 bg-gradient-to-b from-white/60 to-transparent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4 - TRAVEL DESTINATION EXPERIENCE -->
+    <section id="section-4" class="relative w-full h-screen min-h-[800px] overflow-hidden bg-[#1a1f1e]">
+
+        <div class="absolute inset-0 z-0 bg-4-image" id="sec4-bg"></div>
+        <div class="absolute inset-0 z-10 bg-4-overlay"></div>
+        <div class="absolute inset-0 z-20 bg-4-grain"></div>
+        <div class="absolute inset-0 z-20 bg-4-vignette"></div>
+
+        <div class="relative z-30 w-full h-full flex flex-col justify-center p-6 md:p-12 lg:p-20">
+
+            <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
+
+                <div class="sec4-left-content order-2 lg:order-1 opacity-0" id="sec4-left-content">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-6">
+                        <span
+                            class="text-[10px] font-bold tracking-widest text-white uppercase bg-white/20 px-2 py-0.5 rounded-full">NEW</span>
+                        <span class="text-[10px] font-medium tracking-widest text-white/80 uppercase">Travel Beyond
+                            Expectations</span>
+                    </div>
+
+                    <h2 class="sec4-title mb-6">
+                        Travel Beyond<br>the Ordinary
+                    </h2>
+
+                    <p class="sec4-desc max-w-md mb-8">
+                        Explore extraordinary places, compare travel options, and uncover experiences that match your
+                        travel style. Travel smarter, discover more, and make every moment count.
+                    </p>
+
+                    <button class="glass-btn group">
+                        <span>Explore Destinations</span>
+                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                    </button>
+                </div>
+
+                <div class="relative w-full h-[500px] lg:h-[600px] order-1 lg:order-2 flex items-center justify-end"
+                    id="sec4-carousel-container">
+
+                    <div class="dest-item" id="dest-1">
+                        <div class="dest-info-box">
+                            <h3>Camino Island</h3>
+                            <p class="location">Zakynthos, Greece</p>
+                            <p class="description">A hidden gem with turquoise waters and lush cliffs, perfect for a
+                                serene escape.</p>
+                        </div>
+                        <div class="dest-circle">
+                            <img src="https://images.unsplash.com/photo-1544413660-299165566b1d?q=80&w=400&auto=format&fit=crop"
+                                alt="Camino Island">
+                        </div>
+                    </div>
+
+                    <div class="dest-item" id="dest-2">
+                        <div class="dest-info-box">
+                            <h3>Koh Phi Phi Don</h3>
+                            <p class="location">Islands, Thailand</p>
+                            <p class="description">Vibrant nightlife and breathtaking limestone cliffs rising from
+                                emerald waters.</p>
+                        </div>
+                        <div class="dest-circle">
+                            <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=400&auto=format&fit=crop"
+                                alt="Koh Phi Phi Don">
+                        </div>
+                    </div>
+
+                    <div class="dest-item" id="dest-3">
+                        <div class="dest-info-box">
+                            <h3>Cinque Terre</h3>
+                            <p class="location">Vernazza, Italy</p>
+                            <p class="description">Colorful cliffside villages overlooking the sparkling Ligurian Sea.
+                            </p>
+                        </div>
+                        <div class="dest-circle">
+                            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=400&auto=format&fit=crop"
+                                alt="Cinque Terre">
+                        </div>
+                    </div>
+
+                    <div class="dest-item" id="dest-4">
+                        <div class="dest-info-box">
+                            <h3>Grand Canal</h3>
+                            <p class="location">Venice, Italy</p>
+                            <p class="description">A timeless waterway lined with Renaissance palaces and romantic
+                                gondolas.</p>
+                        </div>
+                        <div class="dest-circle">
+                            <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=400&auto=format&fit=crop"
+                                alt="Grand Canal">
+                        </div>
+                    </div>
+
+                    <div class="dest-item" id="dest-5">
+                        <div class="dest-info-box">
+                            <h3>Amalfi Coast</h3>
+                            <p class="location">Salerno, Italy</p>
+                            <p class="description">Dramatic coastlines, lemon groves, and pastel-colored towns perched
+                                on cliffs.</p>
+                        </div>
+                        <div class="dest-circle">
+                            <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=400&auto=format&fit=crop"
+                                alt="Amalfi Coast">
+                        </div>
+                    </div>
+
+                    <div
+                        class="sec4-indicators absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-40 hidden md:flex">
+                        <div class="indicator active" data-index="0"></div>
+                        <div class="indicator" data-index="1"></div>
+                        <div class="indicator" data-index="2"></div>
+                        <div class="indicator" data-index="3"></div>
+                        <div class="indicator" data-index="4"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER - FULLSCREEN INTERACTIVE -->
+    <footer id="footer" class="relative w-full min-h-screen bg-black text-white overflow-hidden footer-bg">
+
+        <!-- Dark Overlay for Readability -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/90 z-0"></div>
+
+        <!-- Top Fade blending with Section 4 -->
+        <div
+            class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#1a1f1e] to-transparent z-10 pointer-events-none">
+        </div>
+
+        <!-- Main Content Wrapper -->
+        <div
+            class="relative z-20 w-full min-h-screen flex flex-col justify-between px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 py-20 md:py-24 max-w-[1920px] mx-auto">
+
+            <!-- Main Row: Socials (Left) | Center CTA | Nav (Right) -->
+            <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-4 items-center">
+
+                <!-- LEFT: Social Icons -->
+                <div
+                    class="md:col-span-3 flex flex-row md:flex-col items-center md:items-start justify-center md:justify-start gap-4 md:gap-5 footer-socials order-2 md:order-1">
+                    <a href="#" aria-label="Instagram" class="social-icon">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="Facebook" class="social-icon">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn" class="social-icon">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" aria-label="YouTube" class="social-icon">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+
+                <!-- CENTER: Tagline + CTA -->
+                <div
+                    class="md:col-span-6 flex flex-col items-center justify-center text-center gap-6 footer-center order-1 md:order-2 px-4">
+                    <p class="text-[10px] md:text-xs tracking-[0.4em] text-white/60 uppercase">Find Your Next Home</p>
+                    <h3 class="sec4-title text-2xl md:text-4xl lg:text-5xl leading-tight">
+                        Your Perfect Space<br>Awaits You
+                    </h3>
+                    <button class="glass-btn group mt-2">
+                        <span>Explore Properties</span>
+                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                    </button>
+                </div>
+
+                <!-- RIGHT: Navigation Links -->
+                <div
+                    class="md:col-span-3 flex flex-row md:flex-col items-center md:items-end justify-center md:justify-start flex-wrap gap-x-6 gap-y-3 md:gap-4 footer-nav order-3 md:order-3">
+                    <a href="#" class="footer-nav-link">Home</a>
+                    <a href="#" class="footer-nav-link">About</a>
+                    <a href="#" class="footer-nav-link">Services</a>
+                    <a href="#" class="footer-nav-link">Projects</a>
+                    <a href="#" class="footer-nav-link">Contact</a>
+                    <a href="#" class="footer-nav-link">Privacy Policy</a>
+                </div>
+            </div>
+
+            <!-- BOTTOM: Text Box (Contact + Copyright) -->
+            <div class="footer-bottom mt-12 md:mt-16 w-full flex justify-center px-4">
+                <div
+                    class="max-w-2xl w-full text-center border border-white/15 bg-black/50 backdrop-blur-xl rounded-2xl px-6 py-5 md:px-10 md:py-6 flex flex-col gap-3 md:gap-4">
+
+                    <!-- Contact Row -->
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8">
+                        <a href="mailto:info@orizondesign.com" class="footer-contact">
+                            <i class="fa-regular fa-envelope text-xs mr-2 opacity-60"></i>info@orizondesign.com
+                        </a>
+                        <span class="hidden md:block w-px h-4 bg-white/20"></span>
+                        <a href="tel:+1234567890" class="footer-contact">
+                            <i class="fa-solid fa-phone text-xs mr-2 opacity-60"></i>+1 (234) 567-890
+                        </a>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="w-full h-px bg-white/10"></div>
+
+                    <!-- Copyright -->
+                    <p class="text-[9px] md:text-[10px] tracking-[0.25em] text-white/40 uppercase">
+                        © 2026 Orizon Design. All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis CDN -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
